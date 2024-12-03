@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_2024_WpfApp6"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="2024WPF選課系統" Height="450" Width="800">
     <Grid>
 
     </Grid>
