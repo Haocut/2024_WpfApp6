@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_2024_WpfApp6"
         mc:Ignorable="d"
-        Title="2024WPF選課系統" Height="450" Width="800">
+        Title="2024WPF選課系統" Height="700" Width="1000">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
@@ -30,5 +30,25 @@
                            HorizontalAlignment="Left" Height="30" Width="500" Margin="50,0,0,0"/>
             </StatusBarItem>
         </StatusBar>
+        <TabControl Grid.Row="1">
+            <TabItem Header="以教師分類課程">
+                <TreeView x:Name="tvTeacher" Background="LightCyan"/>
+            </TabItem>
+            <TabItem Header="所有課程">
+            </TabItem>
+        </TabControl>
+        <ListView x:Name="IvRecord" Grid.Column="2" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}" Background="#FFF9F7EF">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <StackPanel Grid.Column="1" Grid.Row="1">
+            <Button x:Name="btnadd" Content="選課" Width="80" Height="50" Margin="0, 100, 0, 0" FontSize="16" FontWeight="Bold"/>
+            <Button x:Name="btnDelete" Content="退選" Width="80" Height="50" Margin="0, 20, 0, 0" FontSize="16" FontWeight="Bold"/>
+            <Button x:Name="btnSave" Content="儲存" Width="80" Height="50" Margin="0, 20, 0, 0" FontSize="16" FontWeight="Bold"/>
+        </StackPanel>
+
     </Grid>
 </Window>
