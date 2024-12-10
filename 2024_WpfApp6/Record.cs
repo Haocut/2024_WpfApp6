@@ -4,6 +4,15 @@
     {
         public Student SelectedStudent { get; set; }
         
-        public Student SelectedCourse { get; set; }
+        public Course SelectedCourse { get; set; }
+        public override string ToString()
+        {
+            return $"{SelectedStudent.StudentName} / {SelectedCourse.CourseName}";
+        }
+
+        public bool Equals(Record record)
+        {
+            return SelectedStudent == record.SelectedStudent && SelectedCourse == record.SelectedCourse;
+        }
     }
 }

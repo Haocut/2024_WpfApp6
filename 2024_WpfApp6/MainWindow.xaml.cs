@@ -11,6 +11,12 @@ namespace _2024_WpfApp6
         List<Teacher> teachers = new List<Teacher>();
         List<Course> courses = new List<Course>();
         List<Record> records = new List<Record>();
+
+        Student selectedStudent = null;
+        Teacher selectedTeacher = null;
+        Course selectedCourse = null;
+        Record selectedRecord = null;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -29,9 +35,9 @@ namespace _2024_WpfApp6
             // 新增教師資料以及所教授課程
             Teacher teacher1 = new Teacher("陳定宏");
             teacher1.TeachingCourses.Add(new Course
-            { CourseName = "視窗程式設計", OpeningClass = "四技資工二甲", Point = 3,Tutor = teacher1, Type = "選修" });
+            { CourseName = "視窗程式設計", OpeningClass = "四技資工二甲", Point = 3, Tutor = teacher1, Type = "選修" });
             teacher1.TeachingCourses.Add(new Course
-            { CourseName = "網頁程式設計", OpeningClass = "四技資工二甲", Point = 3, Tutor = teacher1, Type = "選修" });
+            { CourseName = "網頁程式設計", OpeningClass = "五專資工三甲", Point = 3, Tutor = teacher1, Type = "選修" });
             teacher1.TeachingCourses.Add(new Course
             { CourseName = "資料庫系統", OpeningClass = "四技資工二乙", Point = 3, Tutor = teacher1, Type = "選修" });
             teachers.Add(teacher1);
@@ -56,7 +62,77 @@ namespace _2024_WpfApp6
 
 
             tvTeacher.ItemsSource = teachers;
-        }   
 
+            foreach (Teacher teacher in teachers)
+            {
+                foreach (Course course in teacher.TeachingCourses)
+                {
+                    courses.Add(course);
+                }
+            }
+
+            lbCourse.ItemsSource = courses;
+        }
+
+        private void tvTeacher_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            if (tvTeacher.SelectedItem is Teacher)
+            {
+                selectedTeacher = tvTeacher.SelectedItem as Teacher;
+
+                statusLabel.Content = $"選取老師:{selectedTeacher.TeacherName}";
+            }
+            if (tvTeacher.SelectedItem is Course)
+            {
+                selectedCourse = tvTeacher.SelectedItem as Course;
+
+               statusLabel.Content = $"選取課程:{selectedCourse.CourseName}";
+            }
+        }
+
+
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            if (selectedStudent == null || selectedCourse == null)
+            {
+                MessageBox.Show("請選取學生與課程");
+                return;
+            }
+            else
+            {
+                Record record = new Record
+                {
+                    SelectedStudent = selectedStudent,
+                    SelectedCourse = selectedCourse
+                };
+
+                foreach (Record r in records)
+                {
+                    if (r.Equals(record))
+                    {
+                        MessageBox.Show("此學生已選取此課程");
+                        return;
+                    }
+                }
+
+                records.Add(record);
+                lvRecord.ItemsSource = null;
+                lvRecord.Items.Refresh();
+            }
+        }
+        private void cmbStudent_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            selectedStudent = cmbStudent.SelectedItem as Student;
+            
+            statusLabel.Content = $"選取學生:{selectedStudent.StudentName}";
+        }
+
+        private void lbCourse_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            selectedCourse = lbCourse.SelectedItem as Course;
+            
+
+            statusLabel.Content = $"選取課程:{selectedCourse.CourseName}";
+        }
     }
 }

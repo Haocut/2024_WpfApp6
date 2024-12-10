@@ -13,6 +13,8 @@ namespace _2024_WpfApp6
             TeacherName = teacherName;
             TeachingCourses = new ObservableCollection<Course>();
         }
+
+       
     }
 
 }
