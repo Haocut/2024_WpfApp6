@@ -32,9 +32,10 @@
         </StatusBar>
         <TabControl Grid.Row="1">
             <TabItem Header="以教師分類課程">
-                <TreeView x:Name="tvTeacher" Background="LightCyan"/>
+                <TreeView x:Name="tvTeacher" Background="AliceBlue"/>
             </TabItem>
             <TabItem Header="所有課程">
+                <ListBox x:Name="lbCourse" Background="LightCyan"/>
             </TabItem>
         </TabControl>
         <ListView x:Name="IvRecord" Grid.Column="2" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}" Background="#FFF9F7EF">
