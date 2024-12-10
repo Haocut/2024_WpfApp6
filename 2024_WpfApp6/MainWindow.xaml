@@ -32,9 +32,34 @@
         </StatusBar>
         <TabControl Grid.Row="1">
             <TabItem Header="以教師分類課程">
-                <TreeView x:Name="tvTeacher" Background="LightCyan"/>
+                <TreeView x:Name="tvTeacher" Background="AliceBlue">
+                    <TreeView.Resources>
+                        <HierarchicalDataTemplate DataType="{x:Type local:Teacher}" 
+                                                  ItemsSource="{Binding TeachingCourses}">
+                            <StackPanel Orientation="Horizontal" Margin="0,2,0,2">
+                                <Image Width="20" Height="20" Source="/teacher.png"/>
+                                <TextBlock Text="{Binding TeacherName}" FontSize="16" FontWeight="Bold"/>
+                                <TextBlock Text="(" FontSize="16"/>
+                                <TextBlock Text="{Binding TeachingCourses.Count}" FontSize="16" Foreground="Blue"/>
+                                <TextBlock Text=")" FontSize="16"/>
+                            </StackPanel>
+                        </HierarchicalDataTemplate>
+                        <DataTemplate DataType="{x:Type local:Course}">
+                            <StackPanel Orientation="Horizontal" Margin="0,2,0,2">
+                                <Image Width="20" Height="20" Source="/course.png"/>
+                                <TextBlock Text="{Binding CourseName}" FontSize="14"/>
+                                <TextBlock Text="(" FontSize="14"/>
+                                <TextBlock Text="{Binding Type}" FontSize="14"/>
+                                <TextBlock Text="{Binding Point}" FontSize="14" FontWeight="Bold"/>
+                                <TextBlock Text="學分)/" FontSize="14"/>
+                                <TextBlock Text="{Binding OpeningClass}" FontSize="14" Background="LightGray"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </TreeView.Resources>
+                </TreeView>
             </TabItem>
             <TabItem Header="所有課程">
+                <ListBox x:Name="lbCourse" Background="LightCyan"/>
             </TabItem>
         </TabControl>
         <ListView x:Name="IvRecord" Grid.Column="2" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}" Background="#FFF9F7EF">
