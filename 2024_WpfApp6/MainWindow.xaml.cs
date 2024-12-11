@@ -37,7 +37,7 @@ namespace _2024_WpfApp6
             teacher1.TeachingCourses.Add(new Course
             { CourseName = "視窗程式設計", OpeningClass = "四技資工二甲", Point = 3, Tutor = teacher1, Type = "選修" });
             teacher1.TeachingCourses.Add(new Course
-            { CourseName = "網頁程式設計", OpeningClass = "五專資工三甲", Point = 3, Tutor = teacher1, Type = "選修" });
+            { CourseName = "視窗程式設計", OpeningClass = "五專資工三甲", Point = 3, Tutor = teacher1, Type = "選修" });
             teacher1.TeachingCourses.Add(new Course
             { CourseName = "資料庫系統", OpeningClass = "四技資工二乙", Point = 3, Tutor = teacher1, Type = "選修" });
             teachers.Add(teacher1);
@@ -53,11 +53,11 @@ namespace _2024_WpfApp6
 
             Teacher teacher3 = new Teacher("張學友");
             teacher3.TeachingCourses.Add(new Course
-            { CourseName = "資料結構", OpeningClass = "四技資工二甲", Point = 3, Tutor = teacher3, Type = "選修" });
+            { CourseName = "計算機概論", OpeningClass = "四技資工二甲", Point = 3, Tutor = teacher3, Type = "選修" });
             teacher3.TeachingCourses.Add(new Course
-            { CourseName = "作業系統", OpeningClass = "四技資工二甲", Point = 3, Tutor = teacher3, Type = "選修" });
+            { CourseName = "組合語言", OpeningClass = "四技資工二甲", Point = 3, Tutor = teacher3, Type = "選修" });
             teacher3.TeachingCourses.Add(new Course
-            { CourseName = "網路程式設計", OpeningClass = "四技資工二乙", Point = 3, Tutor = teacher3, Type = "選修" });
+            { CourseName = "資訊安全", OpeningClass = "四技資工二乙", Point = 3, Tutor = teacher3, Type = "選修" });
             teachers.Add(teacher3);
 
 
@@ -116,7 +116,7 @@ namespace _2024_WpfApp6
                 }
 
                 records.Add(record);
-                lvRecord.ItemsSource = null;
+                lvRecord.ItemsSource = records;
                 lvRecord.Items.Refresh();
             }
         }

@@ -12,7 +12,10 @@
 
         public bool Equals(Record record)
         {
-            return SelectedStudent == record.SelectedStudent && SelectedCourse == record.SelectedCourse;
+            return SelectedStudent.StudentId ==
+                record.SelectedStudent.StudentId &&
+                SelectedCourse.CourseName ==
+                record.SelectedCourse.CourseName;
         }
     }
 }
