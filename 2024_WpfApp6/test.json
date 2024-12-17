@@ -1,0 +1,52 @@
+{
+  "$id": "1",
+  "$values": [
+    {
+      "$id": "2",
+      "SelectedStudent": {
+        "$id": "3",
+        "StudentId": "S001",
+        "StudentName": "陳曉明"
+      },
+      "SelectedCourse": {
+        "$id": "4",
+        "CourseName": "視窗程式設計",
+        "Type": "選修",
+        "Point": 3,
+        "OpeningClass": "四技資工二甲",
+        "Tutor": {
+          "$id": "5",
+          "TeacherName": "陳定宏",
+          "TeachingCourses": {
+            "$id": "6",
+            "$values": [
+              {
+                "$ref": "4"
+              },
+              {
+                "$id": "7",
+                "CourseName": "視窗程式設計",
+                "Type": "選修",
+                "Point": 3,
+                "OpeningClass": "五專資工三甲",
+                "Tutor": {
+                  "$ref": "5"
+                }
+              },
+              {
+                "$id": "8",
+                "CourseName": "資料庫系統",
+                "Type": "選修",
+                "Point": 3,
+                "OpeningClass": "四技資工二乙",
+                "Tutor": {
+                  "$ref": "5"
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

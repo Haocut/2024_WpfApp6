@@ -1,4 +1,11 @@
-﻿using System.Windows;
+﻿using Microsoft.Win32;
+using System.IO;
+using System.Text;
+using System.Text.Encodings.Web;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.Text.Unicode;
+using System.Windows;
 
 namespace _2024_WpfApp6
 {
@@ -133,6 +140,42 @@ namespace _2024_WpfApp6
             
 
             statusLabel.Content = $"選取課程:{selectedCourse.CourseName}";
+        }
+
+        private void lvRecord_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            selectedRecord = lvRecord.SelectedItem as Record;
+            statusLabel.Content = $"選取紀錄:{selectedRecord}";
+        }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            if (selectedRecord != null)
+            {
+                records.Remove(selectedRecord);
+                lvRecord.ItemsSource = records;
+                lvRecord.Items.Refresh();
+            }
+
+        }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Json File(*.json)|*.json|All Files(*.*)|*.*";
+            saveFileDialog.DefaultExt = "json";
+            saveFileDialog.AddExtension = true;
+            if(saveFileDialog.ShowDialog() == true)
+            {
+                JsonSerializerOptions options = new JsonSerializerOptions
+                {
+                    Encoder = JavaScriptEncoder.Create(UnicodeRanges.All),
+                    WriteIndented = true,
+                    ReferenceHandler = ReferenceHandler.Preserve
+                };
+                string jsonString = JsonSerializer.Serialize(records, options);
+                File.WriteAllText(saveFileDialog.FileName, jsonString);
+            }
         }
     }
 }
